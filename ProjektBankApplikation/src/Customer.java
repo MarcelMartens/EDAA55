@@ -4,7 +4,6 @@ public class Customer {
 	private long idNr;
 	private int kundNr;
 	private static int counter = 100;
-	
 
 	/**
 	 * Skapar en kund (kontoinnehavare) med namnet 'name' och id-nummer 'idNr'.
@@ -27,8 +26,9 @@ public class Customer {
 	/** Tar reda på kundens personnummer. */
 	long getIdNr() {
 		return this.idNr;
-	
+
 	}
+
 	/** Tar reda på kundens kundnummer. */
 	int getCustomerNr() {
 		return this.kundNr;
@@ -36,7 +36,7 @@ public class Customer {
 
 	/** Returnerar en strängbeskrivning av kunden. */
 	public String toString() {
-		String toString = "namn: "+this.name+", personnummer: "+this.idNr+", kundnummer: "+kundNr;
+		String toString = "namn: " + this.name + ", personnummer: " + this.idNr + ", kundnummer: " + kundNr;
 		return toString;
 	}
 

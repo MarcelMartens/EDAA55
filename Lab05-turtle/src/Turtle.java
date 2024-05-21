@@ -87,7 +87,7 @@ public class Turtle {
 	private void drawTurtle(double newX, double newY) {
 		double tempX = this.xPos;
 		double tempY = this.yPos;
-		for (int i = 0; i <2; i++) {
+		for (int i = 0; i < 2; i++) {
 			this.tSprite.moveMidTo((int) Math.round(tempX), (int) Math.round(tempY));
 			tempX = newX;
 			tempY = newY;
