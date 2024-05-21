@@ -1,0 +1,299 @@
+får man ha get() och indexOf() i Bank?
+kanske är lättare att bara skriva över kontot i listan med det ändrate temp-kontot
+hjälpmetoder för att göra switch-blocket mer simpelt
+på "allaccounts": kanske ändra så jag bara hämtar namnen en gång i början, sen sorterar, sen hämtar konton för de namnen.
+
+
+
+-sätta in pengar ska inte tillåta negativa summor
+-lång stacktrace vid insättning till konto som ej finns samma vid uttag
+-lägg till inte tillräckligt saldo vid uttag större än balans
+-utskrift efter överför till "skriv kontonummer att överföra från"
+-överför tar alltid från första skapade kontot?
+-bättre avsluta-text
+
+
+Kunde ha gjort snyggare lösning för kontonummer.... kunde legat i withdraw etc istället
+eller lagt det som en metod som returnar värdet som läses in
+
+
+annan lösning på print: variabla strings, parameter= string som ska sättas in. ex:
+"något gick fel, vänligen kontrollera inmatning och försök igen" kan skrivas som printErr("inmatning)
+                                         ^parameter
+andra fraser som funkar:
+
+
+
+
+
+
+
+Metod för att inputta en int och använda varje decimalposition som en egen int:
+	private static LinkedList<Integer> intArr(int nbrToArray) {
+		int nbr = nbrToArray;
+		LinkedList<Integer> nList = new LinkedList<>();
+		if (nbr == 0) {
+			nList.push(0);
+			return nList;
+		}
+		while (nbr > 0) {
+			nList.push(nbr % 10);
+			nbr /= 10;
+		}
+		return nList;
+	}
+
+
+
+
+
+Gammal metod för att sortera:
+		/*
+		BankAccount[] accountArray = (BankAccount[]) accounts.toArray();
+		BankAccount tempAccount;
+		String tempString;
+		String[] nameArray = (String[]) nameList().toArray();
+		for (int i = 0; i < nameArray.length; i++) {
+			for (int j = i + 1; i < nameArray.length; j++) {
+				// if (nameArray[i] != null && nameArray[i+1] != null) {
+				if (nameArray[i].compareToIgnoreCase(nameArray[j]) > 0) {
+
+					tempString = nameArray[i];
+					nameArray[i] = nameArray[j];
+					nameArray[j] = tempString;
+
+					tempAccount = accountArray[i];
+					accountArray[i] = accountArray[j];
+					accountArray[j] = tempAccount;
+
+				}
+				// }
+			}
+		}
+		ArrayList<BankAccount> sortedAccounts = new ArrayList<>();
+		for (BankAccount account : accountArray) {
+			sortedAccounts.add(account);
+		}
+		return sortedAccounts;
+		*/
+		
+		
+		
+		
+		gamla och dåliga string-metoder:
+			/*
+	 * private static String str(int arrayNbr, int stringNbr) { String returnString
+	 * = ""; String[] choices = {
+	 * " Välj ett alternativ nedan genom att skriva respektive nummer (1-9)",
+	 * "1. Hitta konton för en viss kontoinnehavare",
+	 * "2. Sök kontoinnehavare på (del av) namn", "3. Sätta in pengar",
+	 * "4. Ta ut pengar", "5. Överföring mellan konton", "6. Skapa nytt konto",
+	 * "7. Ta bort konto", "8. Skriv ut bankens alla konton", "9. Avsluta", };
+	 * String[] responseArray = { "Ditt val: ",
+	 * " Skriv personnummer för kontoinnehavaren du vill hitta",
+	 * " Skriv namn eller del av ett namn på kontoinnehavaren du söker",
+	 * " Skriv kontonummer på det kontot du vill sätta in pengar på",
+	 * " skriv kontonummer på det kontot du vill sätta in pengar på",
+	 * " Välj konto att överföra till genom att skriva kontonummret",
+	 * "Skriv personnummer för kontoinnehavaren, 12 nummer utan bindestreck.",
+	 * " Skriv kontonummret för kontot som ska raderas",
+	 * "\n Avslutar applikation...", "", "", "Följande kontoinnehavare hittades:",
+	 * "Vänligen skriv insättningssumma", "", "", "", "", "", "", "", "", "",
+	 * "Något gick fel med insättningen. Vänligen kontrollera så kontonummer stämmer!"
+	 * , "", "" }; if (arrayNbr == 1) { returnString += choices[stringNbr];
+	 * 
+	 * } else if (arrayNbr == 2) { returnString += "\n" + responseArray[stringNbr];
+	 * 
+	 * } else if (arrayNbr == 3) { returnString += responseArray[0] +
+	 * choices[stringNbr];
+	 * 
+	 * } else if (arrayNbr == 0) { for (String string : choices) { returnString +=
+	 * "\n" + string; }
+	 * 
+	 * } returnString += "\n"; return returnString; }
+	 */
+/*
+	private static String str(int choiceNbr, int stringNbr) {
+		String returnString = "\n";
+		stringNbr--;
+		try {
+			for (int i = 0; i <= 9; i++) {
+				switch (choiceNbr) {
+				case 1:
+					String[] choices1 = { "1. Hitta konton för en viss kontoinnehavare",
+							"Skriv personnummer för kontoinnehavaren du vill hitta",
+							"Följande kontoinnehavare hittades:" };
+					returnString += choices1[stringNbr];
+					break;
+				case 2:
+					String[] choices2 = { "2. Sök kontoinnehavare på (del av) namn",
+							" Skriv namn eller del av ett namn på kontoinnehavaren du söker",
+							"Följande kontoinnehavare hittades:" };
+					returnString += choices2[stringNbr];
+					break;
+				case 3:
+					String[] choices3 = { "3. Sätta in pengar",
+							" Skriv kontonummer på det kontot du vill sätta in pengar på",
+							"Vänligen skriv insättningssumma",
+							"Något gick fel med insättningen. Vänligen kontrollera så kontonummer stämmer!" };
+					returnString += choices3[stringNbr];
+					break;
+				case 4:
+					String[] choices4 = { "4. Ta ut pengar",
+							"skriv kontonummer på det kontot du vill ta ut pengar från",
+							"Vänligen skriv insättningssumma (PUNKT SOM DECIMALTECKEN!!!)" };
+					returnString += choices4[stringNbr];
+					break;
+				case 5:
+					String[] choices5 = { "5. Överföring mellan konton",
+							"Välj konto att överföra till genom att skriva kontonummret",
+							"Välj konto att överföra från genom att skriva kontonummret" };
+					returnString += choices5[stringNbr];
+					break;
+				case 6:
+					String[] choices6 = { "6. Skapa nytt konto", "Skriv namn på kontoinnehavaren",
+							"Skriv personnummer för kontoinnehavaren, 12 nummer utan bindestreck" };
+					returnString += choices6[stringNbr];
+					break;
+				case 7:
+					String[] choices7 = { "7. Ta bort konto", "Skriv kontonummret för kontot som ska raderas" };
+					returnString += choices7[stringNbr];
+					break;
+				case 8:
+					String[] choices8 = { "8. Skriv ut bankens alla konton" };
+					returnString += choices8[stringNbr];
+					break;
+				case 9:
+					String[] choices9 = { "9. Avsluta", "Avslutar applikation..." };
+					returnString += choices9[stringNbr];
+					break;
+				case 10:
+					String[] choices10 = { "Ditt val: ",
+							"Ditt val skrevs ej in rätt. kontrollera inskriften och försök igen!",
+							"skriv valfri symbol för att fortsätta" };
+					returnString += choices10[stringNbr];
+					break;
+
+				default:
+					returnString = "\n";
+					break;
+				}
+				if (choiceNbr == 0) {
+					returnString += "Välj ett alternativ nedan genom att skriva respektive nummer (1-9)";
+				}
+				if (choiceNbr == i) {
+					returnString += "\n";
+					choiceNbr++;
+					continue;
+				}
+				break;
+			}
+			return returnString;
+		} catch (Exception e) {
+			System.out.println("något gick fel med utskriften");
+			e.printStackTrace();
+			return returnString;
+		}
+	}*/
+
+	/*
+	 * private static String str(int numberToChoices) { LinkedList<Integer> choices
+	 * = intArr(numberToChoices); System.out.println(choices); String s = "";
+	 * String[] choiceArray = { "Ditt val: ",
+	 * "1. Hitta konton för en viss kontoinnehavare",
+	 * "2. Sök kontoinnehavare på (del av) namn", "3. Sätta in pengar",
+	 * "4. Ta ut pengar", "5. Överföring mellan konton", "6. Skapa nytt konto",
+	 * "7. Ta bort konto", "8. Skriv ut bankens alla konton", "9. Avsluta", };
+	 * String[] responseArray = {
+	 * "\n Välj ett alternativ nedan genom att skriva respektive nummer (1-9)",
+	 * "\n Skriv personnummer för kontoinnehavaren du vill hitta",
+	 * "\n Skriv namn eller del av ett namn på kontoinnehavaren du söker",
+	 * "\n Skriv kontonummer på det kontot du vill sätta in pengar på",
+	 * "\n skriv kontonummer på det kontot du vill sätta in pengar på",
+	 * "\n Välj konto att överföra till genom att skriva kontonummret",
+	 * "Skriv personnummer för kontoinnehavaren, 12 nummer utan bindestreck.",
+	 * "\n Skriv kontonummret för kontot som ska raderas", "\n",
+	 * "\n Avslutar applikation..."}; switch (choices.pop()) { case 1:
+	 * System.out.println(choices); for (int e : choices) { s += choiceArray[e]; }
+	 * case 2: System.out.println(choices); for (int e : choices) { s +=
+	 * responseArray[e]; } default: for (int i = 1; i < 10; i++) { s += "\n" +
+	 * choiceArray[i]; } } return s;
+	 * 
+	 * }
+	 */
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 Gammal ofärdig metod för att hantera själva programmen vid varje metod:
+	 /*
+		 * } private void c1() {
+		 * System.out.println("ditt val:  1. Hitta konton för en viss kontoinnehavare "
+		 * + "\n Skriv personnummer för kontoinnehavaren du vill hitta");
+		 * 
+		 * for (BankAccount account : bank.findAccountsForHolder(next(Long.class))) {
+		 * System.out.println(account.toString()); } }
+		 * 
+		 * private void c2() {
+		 * System.out.println("ditt val:  2. Sök kontoinnehavare på (del av) namn " +
+		 * "\n Skriv namn eller del av ett namn på kontoinnehavaren du söker");
+		 * waitNext(); System.out.println("Följande kontoinnehavare hittades:"); for
+		 * (Customer customer : bank.findByPartofName(next(String.class))) {
+		 * System.out.println(customer.toString()); } }
+		 * 
+		 * private void c3() { System.out.println("ditt val:  3. Sätta in pengar" +
+		 * "\n Skriv kontonummer på det kontot du vill sätta in pengar på"); try {
+		 * System.out.println("valt konto: " + bank.getFromIndex(index =
+		 * setIndex()).toString() + "\n Vänligen skriv insättningssumma"); bal =
+		 * next(Integer.class); bank.getFromIndex(index).deposit(bal);
+		 * System.out.println("Satt in " + bal + "kr på konto - " +
+		 * bank.getFromIndex(index).toString()); }catch (Exception e) { System.out.
+		 * println("Något gick fel med insättningen. Vänligen kontrollera så kontonummer stämmer!"
+		 * ); } }
+		 * 
+		 * private void c4() { }
+		 * 
+		 * private void c5() { }
+		 * 
+		 * private void c6() { }
+		 * 
+		 * private void c7() { }
+		 * 
+		 * private void c8() { }
+		 */
+		 
+		 
+		 
+		 
+		 gammal metod för input igen:
+		 	private static Object nexto() {
+		Object input = new Object();
+		try {
+			waitNext();
+			System.out.println("input klar");
+		if (scan.hasNextInt()) {
+			System.out.println("int");
+			input = scan.nextInt();
+		}
+		else if (scan.hasNextLong()) {
+			System.out.println("long");
+			input = scan.nextLong();
+		}
+		else if (scan.hasNextDouble()) {
+			System.out.println("double");
+			input = scan.nextDouble();
+		}
+		else if (scan.hasNext()) {
+			System.out.println("string");
+			input = scan.next();
+		}
+		return input;
+		}catch (Exception e) {
+			print(str("e", "inläsningen"));
+			return input;
+		}
+	}
+		
